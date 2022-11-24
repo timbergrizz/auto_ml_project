@@ -6,6 +6,9 @@ import sys
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn import tree
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score
+from sklearn.ensemble import RandomForestClassifier
 
 def load_dataset(dataset_path):
 	#To-Do: Implement this function
@@ -16,19 +19,35 @@ def dataset_stat(dataset_df):
     return dataset_df.shape[1], len(dataset_df[dataset_df["target"] == 0]), len(dataset_df[dataset_df["target"] == 1])
 
 def split_dataset(dataset_df, testset_size):
-    X = dataset_df.drop(column="target", axis=1)
-    y = dataset_df["target"]
-    return train_test_split(X, y, test_size=testset_size)
     # return train_test_split(dataset_df[], dataset_df[], test_size = testset_size)
 	#To-Do: Implement this function
+    x = dataset_df.loc[:, dataset_df.columns != "target"]
+    y = dataset_df["target"]
+    return train_test_split(x, y, test_size=testset_size)
 
 def decision_tree_train_test(x_train, x_test, y_train, y_test):
-    return
 	#To-Do: Implement this function
+    dt_cls = DecisionTreeClassifier()
+    dt_cls.fit(x_train, y_train)
+
+    predict_result = dt_cls.predict(x_test)
+    acc = accuracy_score(predict_result, y_test)
+    prec = precision_score(predict_result, y_test)
+    recall = recall_score(predict_result, y_test)
+
+    return acc, prec, recall
 
 def random_forest_train_test(x_train, x_test, y_train, y_test):
-    return
 	#To-Do: Implement this function
+    dt_cls = ()
+    dt_cls.fit(x_train, y_train)
+
+    predict_result = dt_cls.predict(x_test)
+    acc = accuracy_score(predict_result, y_test)
+    prec = precision_score(predict_result, y_test)
+    recall = recall_score(predict_result, y_test)
+
+    return acc, prec, recall
 
 def svm_train_test(x_train, x_test, y_train, y_test):
     return
