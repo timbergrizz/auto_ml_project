@@ -9,6 +9,9 @@ from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import make_pipeline
 
 def load_dataset(dataset_path):
 	#To-Do: Implement this function
@@ -50,8 +53,20 @@ def random_forest_train_test(x_train, x_test, y_train, y_test):
     return acc, prec, recall
 
 def svm_train_test(x_train, x_test, y_train, y_test):
-    return
 	#To-Do: Implement this function
+    svm_pipe = make_pipeline(
+        StandardScaler(),
+        SVC()
+    )
+
+    svm_pipe.fit(x_train, y_train)
+
+    predict_result = svm_pipe.predict(x_test)
+    acc = accuracy_score(predict_result, y_test)
+    prec = precision_score(predict_result, y_test)
+    recall = recall_score(predict_result, y_test)
+
+    return acc, prec, recall
 
 def print_performances(acc, prec, recall):
 	#Do not modify this function!
