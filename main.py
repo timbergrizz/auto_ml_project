@@ -39,10 +39,10 @@ def decision_tree_train_test(x_train, x_test, y_train, y_test):
 
 def random_forest_train_test(x_train, x_test, y_train, y_test):
 	#To-Do: Implement this function
-    dt_cls = ()
-    dt_cls.fit(x_train, y_train)
+    rf_cls = RandomForestClassifier()
+    rf_cls.fit(x_train, y_train)
 
-    predict_result = dt_cls.predict(x_test)
+    predict_result = rf_cls.predict(x_test)
     acc = accuracy_score(predict_result, y_test)
     prec = precision_score(predict_result, y_test)
     recall = recall_score(predict_result, y_test)
