@@ -19,7 +19,7 @@ def load_dataset(dataset_path):
 
 def dataset_stat(dataset_df):
 	#To-Do: Implement this function
-    return dataset_df.shape[1], len(dataset_df[dataset_df["target"] == 0]), len(dataset_df[dataset_df["target"] == 1])
+    return dataset_df.shape[1] - 1, len(dataset_df[dataset_df["target"] == 0]), len(dataset_df[dataset_df["target"] == 1])
 
 def split_dataset(dataset_df, testset_size):
     # return train_test_split(dataset_df[], dataset_df[], test_size = testset_size)
