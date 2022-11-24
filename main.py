@@ -3,23 +3,35 @@
 
 
 import sys
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn import tree
 
 def load_dataset(dataset_path):
 	#To-Do: Implement this function
+    return pd.read_csv(dataset_path);
 
 def dataset_stat(dataset_df):
 	#To-Do: Implement this function
+    return dataset_df.shape[1], len(dataset_df[dataset_df["target"] == 0]), len(dataset_df[dataset_df["target"] == 1])
 
 def split_dataset(dataset_df, testset_size):
+    X = dataset_df.drop(column="target", axis=1)
+    y = dataset_df["target"]
+    return train_test_split(X, y, test_size=testset_size)
+    # return train_test_split(dataset_df[], dataset_df[], test_size = testset_size)
 	#To-Do: Implement this function
 
 def decision_tree_train_test(x_train, x_test, y_train, y_test):
+    return
 	#To-Do: Implement this function
 
 def random_forest_train_test(x_train, x_test, y_train, y_test):
+    return
 	#To-Do: Implement this function
 
 def svm_train_test(x_train, x_test, y_train, y_test):
+    return
 	#To-Do: Implement this function
 
 def print_performances(acc, prec, recall):
@@ -37,6 +49,7 @@ if __name__ == '__main__':
 	print ("Number of features: ", n_feats)
 	print ("Number of class 0 data entries: ", n_class0)
 	print ("Number of class 1 data entries: ", n_class1)
+
 
 	print ("\nSplitting the dataset with the test size of ", float(sys.argv[2]))
 	x_train, x_test, y_train, y_test = split_dataset(data_df, float(sys.argv[2]))
